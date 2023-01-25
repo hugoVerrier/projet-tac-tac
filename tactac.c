@@ -3,3 +3,9 @@
 //
 
 #include "tactac.h"
+#include <stdio.h>
+
+int pioche(){
+    Tuile pioche[35]={0};
+    printf("%c",4);
+}
