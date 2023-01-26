@@ -6,19 +6,63 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tactac.h"
+#include <plateau.h>
 
+void display_menu() {
+    int choix;
+    int partie_terminee = 0;
+    int nb_players;
+    do {
+        printf("Menu:\n");
+        printf("1. Debuter une nouvelle partie\n");
+        printf("2. Sauvegarder une partie\n");
+        printf("3. Regles du jeu\n");
+        printf("4. Tableau des scores\n");
+        printf("5. Credits\n");
+        printf("6. Quitter le jeu\n");
+        printf("Entrez votre choix : ");
+        scanf("%d", &choix);
+        switch (choix) {
+            case 1:
+                printf("Entrer le nombre de joueurs dans la partie ( entre 2 et 4) : ");
+                scanf("%d", &nb_players);
+                if (nb_players < 2 || nb_players > 4){
+                    printf("Le nombre de joueurs doit etre compris entre 2 et 4\n");
+                }
+                //affichage de l'état du plateau
+                Tuile plateau[12][26];
+                initialiserPlateau(plateau);
+                afficherPlateau(plateau);
+                break;
+            case 2:
+                sauvegarder_une_partie();
+                break;
+            case 3:
+                regles_du_jeu();
+                break;
+            case 4:
 
-void display_menu(void){
-// afficher le menu
-    printf("\nMenu:\n");
-    printf("1. Nouvelle partie\n");
-    printf("2. Regles du jeu\n");
-    printf("3. Tableau_des_scores\n");
-    printf("4. Credits\n");
-    printf("5. Quitter le jeu \n");
-    printf("Entrez votre choix : ");
+                for (int i = 0; i < nb_players; ++i) {
+                    Joueurs joueurs[nb_players];
+                    printf("Entrez le nom du joueur %d : ", i + 1);
+                    scanf("%s", joueurs[i].nom);
+                    printf("Entrez le score du joueur %d : ", i + 1);
+                    scanf("%d", &joueurs[i].score);
+                }
+                Joueurs joueurs;
+                tableau_des_scores;
+            case 5:
+                credits();
+                break;
+            case 6:
+                printf("Au revoir!");
+                break;
+            default:
+                printf("Choix invalide. Veuillez réessayer.\n");
+                break;
+        }
+    } while (choix != 6);
 }
-
 // lire le choix de l'utilisateur
 int get_menu_choice(void) {
     int choice;
@@ -26,11 +70,8 @@ int get_menu_choice(void) {
     return choice;
 }
 
-void debuter_une_nouvelle_partie() {
-    int mode_de_jeu;
+void debuter_une_nouvelle_partie(){
     int nb_joueurs;
-    printf("En quel mode voulez\x2dvous jouer ? (degrade ou normal) \n");
-    scanf("%d", mode_de_jeu);
     // demande du nombre de joueurs
     printf("Entrez le nombre de joueurs (2 a 4) :\n");
     scanf("%d", &nb_joueurs);
@@ -40,56 +81,32 @@ void sauvegarder_une_partie(){
 }
 
 void regles_du_jeu(){
-    printf("Mise en place\n"
-           "Chaque joueur doit se munir d une feuille de papier et d un crayon pour noter ses points.\n"
-           "Placez toutes les tuiles dans le sac.\n"
-           "A tour de role, chacun va piocher 6 tuiles.\n"
-           "Les tuiles piochees forment la main et sont placees face cachee devant chaque joueur.\n"
-           "Le reste des tuiles forme la reserve.\n"
-           "Avant de commencer...\n"
-           "Chacun etudie sa main.\n"
-           "Chacun compte les tuiles de sa main qui presentent une caracteristique commune : couleur Tuile couleur Qwirkle ou symbole Tuile symbole Qwirkle.\n"
-           "Attention ! Les tuiles identiques, meme symbole et meme couleur, ne comptent pas Tuile identique Qwirkle.\n"
-           "Le joueur qui a trouve le plus de tuiles commence ; il pose ses tuiles, face visible, devant lui et pioche dans le sac pour ramener sa main a 6.\n"
-           "Jouez dans le sens des aiguilles d une montre.\n"
-           "Comment se deroule un tour ?\n"
-           "A son tour de jeu, le joueur peut realiser une des actions suivantes :\n"
-           "\x2d Ajouter une tuile a une ligne et piocher dans la reserve,\n"
-           "\x2d Ajouter 2 ou plusieurs tuiles de meme caracteristique a une ligne et piochez dans la reserve,\n"
-           "\x2d Echanger une partie ou la totalite des tuiles de sa main contre des tuiles de la reserve et passer son tour.\n"
-           "Ajouter une ou plusieurs tuiles\n"
-           "Les tuiles posees doivent continuer la ligne existante.\n"
-           "Le joueur a le choix entre creer une ligne de forme Ligne jeu Qwirkle ou creer une ligne de couleur Ligne couleur Qwirkle.\n"
-           "Deux tuiles adjacentes doivent avoir un point commun Tuiles adjacentes Qwirkle. \n"
-           "Ligne de couleur\n"
-           "Une ligne de couleur ne peut etre composee que des 6 symboles differents.\n"
-           "Ainsi, 1 symbole ne peut pas se repeter dans la meme ligne.\n"
-           "Ligne de symbole\n"
-           "Une ligne de symbole ne peut etre composee que des 6 couleurs differentes.\n"
-           "1 couleur ne peut pas se repeter dans la meme ligne.\n"
-           "Echanger une partie ou la totalite de ses tuiles\n"
-           "Il est possible d’echanger une partie ou la totalite de ses tuiles contre les tuiles la reserve si :\n"
-           " Le joueur ne peut pas jouer.\n"
-           "\x2d Le joueur ne veut pas jouer.\n"
-           "Les tuiles a echanger sont mises de cote.\n"
-           "Le joueur pioche le meme nombre de tuiles dans la reserve.\n"
-           "Les tuiles a echanger sont remises dans la reserve.\n"
-           "Le joueur passe son tour.\n"
-           "Calcul des points\n"
-           "Quand un joueur cree ou complete une ligne, il gagne 1 point pour chaque tuile composant la ligne.\n"
-           "Tuile couleur Qwirkle = 3 points\n"
-           "\n"
-           "Quand la tuile d un joueur permet de creer 2 lignes, celle-ci lui rapporte 2 points.\n"
-           "Tuiles adjacentes Qwirkle = 3 points + 2 points (carre rouge) + 2 points\n"
-           "\n"
-           "Quand un joueur arrive à creer une ligne couleur de 6 symboles differents ou une ligne symbole de 6 couleurs differentes, il forme un Qwirkle et gagne 6 points supplementaires.\n"
-           "Le joueur qui joue toute ses tuiles gagne 6 points.\n"
-           "Fin de la partie\n"
-           "Quand la reserve est epuisee, les joueurs continuent a jouer.\n"
-           "La partie prend fin dans les 2 cas suivants :\n"
-           "\x2d Un joueur a joue toutes ses tuiles ; il marque 6 points supplementaires.\n"
-           "\x2d Aucun joueur ne peut jouer ses tuiles ; personne ne marque 6 points supplementaires.\n"
-           "Le joueur qui a recolte le maximum de points est declare vainqueur.");
+    printf("QWIRKLE est un jeu tactique d'association et de logique."
+           "\n----------------------------------------------------------\n");
+    printf("Il se joue de 2 a 4 joueurs\n"
+           "chaque joueur dispose de 6 tuiles.\n"
+           "Chacun leur tour, les joueurs placent un maximum de tuiles sur une seule lignes avec un caractere commun :\n"
+           "La couleur ou la forme.\n"
+           "A chaque tour on marque les points des lignes que l'on a complete. l'astuce consiste a placer ses pieces,\n"
+           "a des endroits strategiques, comme par exemple des intersections, pour marquer un maximum de points.\n"
+           "                                                                                                      "
+           "Il existe 2 modes de jeu:\n");
+    printf("Mode normal:\n---------\n");
+    printf("108 tuiles pour 6 formes et 6 couleurs.\n"
+           "Chaque forme est donc presente 3 fois dans une meme couleur dans la pioche\n");
+    printf("                                                                                                          ");
+    printf("Mode degrade:\n-----------\n");
+    printf("36 tuiles pour 6 formes et 6 couleurs"
+           "Chaque forme n est presente qu une fois dans une meme couleur dans la pioche\n");
+    printf("                                                                                                           ");
+    printf("On peut echanger tout ou une partie de sa main\n"
+           "contre differentes tuiles de la reserve, et passer son tour( sans joueur de tuiles)\n"
+           "Quand vous creez une ligne, vous marquez 1 point pour chque tuile presente dans la ligne.\n"
+           "Quand vous ajoutez une tuile a une ligne existante, vous marquez 1 point pour chaque tuile de cette ligne\n"
+           "y compris les tuiles qui se trouvaient au prealable sur cette ligne.\n"
+           "Une tuiles peut rapporter 2 points si elle appartient a deux lignes differentes "
+           "Une ligne de six tuiles est appelee un Qwirkle (6 points supplementaire).\n"
+           "Le joueur qui obtient le plus de points en fin de paties est le gagnant.\n");
 }
 
 void tableau_des_scores(Joueurs joueurs[], int nb_players) {
