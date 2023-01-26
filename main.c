@@ -1,6 +1,7 @@
 //
 // Created by Tom Raviot on 25/01/2023.
 //
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -47,8 +48,12 @@ int main() {
                 break;
         }
     } while (choice != 6);*/
+//    Tuile plateau[12][26];
+//    initialiserPlateau(plateau);
+//    afficherPlateau(plateau);
+//
     srand(time(NULL));
     JeuProjet();
-    return 0;
+    return 0;    };
 
 }

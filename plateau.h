@@ -9,7 +9,7 @@
 void initialiserPlateau(Tuile plateau[12][26]);
 void afficherPlateau(Tuile plateau[12][26]);
 
-void aller(Tuile plateau[12][26]);
+
 
 #define LIGNE 12
 #define COLONNE 26
