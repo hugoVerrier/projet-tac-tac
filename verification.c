@@ -4,4 +4,3 @@
 #include "verification.h"
 #include <stdbool.h>
 
-bool verifier_coup(char plateau[LIGNES])

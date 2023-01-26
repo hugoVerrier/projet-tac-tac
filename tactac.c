@@ -83,7 +83,11 @@ void afficheTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRAD
 }
 
 
-void PoserTuiles(){
-    printf(" Ou voulez vous posez votre tuile ?\n");
-}
+//void verif(int x,int y, Tuile plateau[26][12],Tuile test){
+//    if(plateau[x][y].symbole==0){
+//        if( (plateau[x-1][y.symbole]==0) && (plateau[x+1][y].symbole==0) && plateau[x][y+1].symbole==0) && (plateau[x][y-1]==0)){
+//        plateau[x][y]=test;
+//        }else if()
+//    }
+//}
 

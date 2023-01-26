@@ -11,7 +11,8 @@ char plateau [NB_LIGNES_MAX][NB_COLONNES_MAX] = {{0}};
 
 
 void afficherPlateau(Tuile plateau[12][26]){
-    printf("  | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z |\n");
+    printf(" | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t");
+    printf(" | u | v | w | x | y | z |\n");
     for (int i = 1; i < 13; ++i){
         printf("%2d",i);
         for (int j = 0; j < 26; ++j) {

@@ -12,7 +12,8 @@
 #include "stdlib.h"
 #include "time.h"
 #include <windows.h>
-void Color(int couleurDuTexte, int couleurDeFond);
+
+
 
 int main() {
     display_menu();
@@ -23,6 +24,13 @@ int main() {
     afficherPlateau(plateau);
     int forme = 155;
     printf(" %c",forme);
+
+    printf("%c",4);
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+    printf("This text has a red background!");
+
+
     return 0;
 
 }
