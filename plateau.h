@@ -7,4 +7,15 @@
 
 void afficherPlateau();
 
+#define LIGNE 12
+#define COLONNE 26
+
+
+
+
+
+
+
+
+
 #endif //PROJET_TAC_TAC_PLATEAU_H
