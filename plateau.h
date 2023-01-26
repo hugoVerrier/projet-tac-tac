@@ -9,6 +9,6 @@
 void initialiserPlateau(Tuile plateau[12][26]);
 void afficherPlateau(Tuile plateau[12][26]);
 
-
+int coordonnes(Tuile plateau[12][26],Tuile test);
 
 #endif //PROJET_TAC_TAC_PLATEAU_H

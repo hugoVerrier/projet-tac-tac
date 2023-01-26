@@ -15,7 +15,7 @@ typedef struct{
     Tuile pupitre[6];
 }Joueurs;
 
-int pioche();
+
 
 
 #endif //PROJET_TAC_TAC_TACTAC_H

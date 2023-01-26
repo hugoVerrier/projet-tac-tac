@@ -45,7 +45,9 @@ int main() {
         }
     } while (choice != 6);*/
     Tuile plateau[12][26];
+    Tuile test;
     initialiserPlateau(plateau);
+    coordonnes(plateau,test);
     afficherPlateau(plateau);
     return 0;
 
