@@ -6,5 +6,6 @@
 #define PROJET_TAC_TAC_PLATEAU_H
 
 void afficherPlateau();
+void jouerPion (int ligne, int colonne, char forme, char couleur);
 
 #endif //PROJET_TAC_TAC_PLATEAU_H

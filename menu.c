@@ -5,6 +5,7 @@
 #include "menu.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "tactac.h"
 
 
 void display_menu(void){
@@ -12,8 +13,9 @@ void display_menu(void){
     printf("\nMenu:\n");
     printf("1. Nouvelle partie\n");
     printf("2. Regles du jeu\n");
-    printf("3. Credits\n");
-    printf("4. Quitter le jeu \n");
+    printf("3. Tableau_des_scores\n");
+    printf("4. Credits\n");
+    printf("5. Quitter le jeu \n");
     printf("Entrez votre choix : ");
 }
 
@@ -90,11 +92,20 @@ void regles_du_jeu(){
            "Le joueur qui a recolte le maximum de points est declare vainqueur.");
 }
 
+void tableau_des_scores(Joueurs joueurs[], int nb_players) {
+    FILE *file = fopen("scores.txt", "a");
+    for (int i = 0; i < nb_players; ++i) {
+        fprintf(file, "%s %d\n", joueurs[i].nom, joueurs[i].score);
+    }
+    fclose(file);
+}
+
 void credits (){
     // afficher les credits du jeu
     printf("Voici les credits du jeu :\n");
     printf("- Developpeur : Tom, Hugo, Alexi\n");
 }
+
 
 void quitter_le_jeu(){
     // quitter le jeu
