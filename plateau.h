@@ -9,6 +9,6 @@
 void initialiserPlateau(Tuile plateau[12][26]);
 void afficherPlateau(Tuile plateau[12][26]);
 
-void aller(Tuile plateau[12][26]);
+
 
 #endif //PROJET_TAC_TAC_PLATEAU_H

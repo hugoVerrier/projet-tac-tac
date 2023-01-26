@@ -1,6 +1,7 @@
 //
 // Created by Tom Raviot on 25/01/2023.
 //
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -10,7 +11,7 @@
 
 
 int main() {
-    int choice;
+    /*int choice;
     int (partie_terminee) = 0;
     do {
         printf("\nMenu:\n");
@@ -42,7 +43,10 @@ int main() {
                 printf("Choix invalide. Veuillez réessayer.\n");
                 break;
         }
-    } while (choice != 6);
-
+    } while (choice != 6);*/
+    Tuile plateau[12][26];
+    initialiserPlateau(plateau);
+    afficherPlateau(plateau);
+    return 0;
 
 }
