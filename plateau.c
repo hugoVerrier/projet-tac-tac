@@ -2,21 +2,22 @@
 // Created by hugov on 25/01/2023.
 //
 
-#include "plateau.h"
-#include <stdio.h>
-#include "tactac.h"
-#define NB_LIGNES_MAX 12
-#define NB_COLONNES_MAX 26
-char plateau [NB_LIGNES_MAX][NB_COLONNES_MAX] = {{0}};
-
+#include "commun.h"
 
 void afficherPlateau(Tuile plateau[12][26]){
-    printf(" | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t");
-    printf(" | u | v | w | x | y | z |\n");
+    Tuile test,blanc;
+    test.symbole=33;
+    test.couleur=5;
+    blanc.symbole=0;
+    blanc.couleur=0;
+    printf(" | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z |\n");
     for (int i = 1; i < 13; ++i){
         printf("%2d",i);
         for (int j = 0; j < 26; ++j) {
-            printf("| %c ",plateau[i-1][j].symbole);
+            printf("|");
+            Couleur(test);
+            printf(" %c ",plateau[i-1][j].symbole);
+            Couleur(blanc);
         }
         printf("|");
         printf("\n");
@@ -1348,3 +1349,34 @@ int coordonnes(Tuile plateau[12][26], Tuile test){
 
     }
 
+void Couleur(Tuile test){
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    switch(test.couleur){
+        case 1 :
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+            break;
+
+        case 2 :
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+            break;
+
+        case 3 :
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
+            break;
+
+        case 4 :
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+            break;
+
+        case 5 :
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_RED);
+            break;
+
+        case 6 :
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+            break;
+
+        default :
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+    }
+}

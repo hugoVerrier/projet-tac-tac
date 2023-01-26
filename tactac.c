@@ -2,10 +2,7 @@
 // Created by Tom Raviot on 25/01/2023.
 //
 
-#include "tactac.h"
-#include <stdio.h>
-#include <stdlib.h>
-
+#include "commun.h"
 
 void creationPioches(int nbcase,Tuile Deck[108],int ModeDeJeu,Tuile DeckD[36]){
     if(ModeDeJeu==1){
@@ -47,10 +44,9 @@ void MelangeTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRAD
     }
 }
 
-void JeuProjet(){
-    int ModeDeJeu=0, nbcase;
-    Tuile Deck[NORMAL]={0};
-    Tuile DeckD[DEGRADE]={0};
+void JeuProjet(Joueur TAbJoueur[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile DeckD[DEGRADE]){
+    int ModeDeJeu=0, nbcase,nbjoueur=3;
+    Tuile test={0};
     printf("Mode de Jeu ? (1 : degrade sinon normal)\n");
     scanf(" %d",&ModeDeJeu);
     if(ModeDeJeu==1){
@@ -59,7 +55,9 @@ void JeuProjet(){
         nbcase=108;
     }
     creationPioches(nbcase,Deck,ModeDeJeu,DeckD);
-    afficheTab(nbcase,Deck,ModeDeJeu,DeckD);
+    DistributionTuiles(TAbJoueur,Deck,DeckD,nbjoueur,ModeDeJeu);
+    coordonnes(plateau,test);
+    afficherPlateau(plateau);
 }
 
 void afficheTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRADE]) {
@@ -78,6 +76,41 @@ void afficheTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRAD
                 printf("\n");
             }
             printf(" %d", Deck[i].symbole);
+        }
+    }
+}
+
+void DistributionTuiles(Joueur tab[4], Tuile Deck[108], Tuile DeckD[36],int nbjoueur, int ModeDeJeu){
+    if(ModeDeJeu==1){
+        for (int i = 0; i < 6; ++i) {
+            tab[0].pupitre[i].symbole=DeckD[35-i].symbole;
+            tab[0].pupitre[i].couleur=DeckD[35-i].couleur;
+            tab[1].pupitre[i].symbole=DeckD[35-(i+6)].symbole;
+            tab[1].pupitre[i].couleur=DeckD[35-(i+6)].couleur;
+            if(nbjoueur>2){
+                tab[2].pupitre[i].symbole=DeckD[35-(i+12)].symbole;
+                tab[2].pupitre[i].couleur=DeckD[35-(i+12)].couleur;
+                if(nbjoueur>4){
+                    tab[3].pupitre[i].symbole=DeckD[35-(i+18)].symbole;
+                    tab[3].pupitre[i].couleur=DeckD[35-(i+18)].couleur;
+                }
+            }
+        }
+    }
+    else{
+        for (int i = 0; i < 6; ++i) {
+            tab[0].pupitre[i].symbole=Deck[107-i].symbole;
+            tab[0].pupitre[i].couleur=Deck[107-i].couleur;
+            tab[1].pupitre[i].symbole=Deck[107-(i+6)].symbole;
+            tab[1].pupitre[i].couleur=Deck[107-(i+6)].couleur;
+            if(nbjoueur>2){
+                tab[2].pupitre[i].symbole=Deck[107-(i+12)].symbole;
+                tab[2].pupitre[i].couleur=Deck[107-(i+12)].couleur;
+                if(nbjoueur>4){
+                    tab[3].pupitre[i].symbole=Deck[107-(i+18)].symbole;
+                    tab[3].pupitre[i].couleur=Deck[107-(i+18)].couleur;
+                }
+            }
         }
     }
 }

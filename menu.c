@@ -1,12 +1,7 @@
 //
 // Created by clsan on 25.01.2023.
 //
-
-#include "menu.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include "tactac.h"
-#include <plateau.h>
+#include "commun.h"
 
 void display_menu() {
     int choix;
@@ -35,21 +30,21 @@ void display_menu() {
                 afficherPlateau(plateau);
                 break;
             case 2:
-                sauvegarder_une_partie();
+                //sauvegarder_une_partie();
                 break;
             case 3:
-                regles_du_jeu();
+                //regles_du_jeu();
                 break;
             case 4:
 
                 for (int i = 0; i < nb_players; ++i) {
-                    Joueurs joueurs[nb_players];
+                    Joueur joueurs[nb_players];
                     printf("Entrez le nom du joueur %d : ", i + 1);
                     scanf("%s", joueurs[i].nom);
                     printf("Entrez le score du joueur %d : ", i + 1);
                     scanf("%d", &joueurs[i].score);
                 }
-                Joueurs joueurs;
+                Joueur joueurs;
                 tableau_des_scores;
             case 5:
                 credits();
@@ -109,7 +104,7 @@ void regles_du_jeu(){
            "Le joueur qui obtient le plus de points en fin de paties est le gagnant.\n");
 }
 
-void tableau_des_scores(Joueurs joueurs[], int nb_players) {
+void tableau_des_scores(Joueur joueurs[], int nb_players) {
     FILE *file = fopen("scores.txt", "a");
     for (int i = 0; i < nb_players; ++i) {
         fprintf(file, "%s %d\n", joueurs[i].nom, joueurs[i].score);
