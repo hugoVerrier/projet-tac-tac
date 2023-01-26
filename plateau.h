@@ -12,6 +12,17 @@ void jouerPion (int ligne, int colonne, char forme, char couleur);
 void initialiserPlateau(Tuile plateau[12][26]);
 void afficherPlateau(Tuile plateau[12][26]);
 
-void aller(Tuile plateau[12][26]);
+int coordonnes(Tuile plateau[12][26],Tuile test);
+
+#define LIGNE 12
+#define COLONNE 26
+
+
+
+
+
+
+
+
 
 #endif //PROJET_TAC_TAC_PLATEAU_H

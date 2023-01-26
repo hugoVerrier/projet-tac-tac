@@ -1,16 +1,21 @@
 //
 // Created by Tom Raviot on 25/01/2023.
 //
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "menu.h"
 #include "tactac.h"
 #include "plateau.h"
+#include "tactac.h"
+#include "stdlib.h"
+#include "time.h"
+
 
 
 int main() {
-    int choice;
+    /*int choice;
     int (partie_terminee) = 0;
     int nb_players;
     Joueurs joueurs[nb_players];
@@ -54,7 +59,12 @@ int main() {
                 printf("Choix invalide. Veuillez réessayer.\n");
                 break;
         }
-    } while (choice != 6);
-
+    } while (choice != 6);*/
+    Tuile plateau[12][26];
+    Tuile test;
+    initialiserPlateau(plateau);
+    coordonnes(plateau,test);
+    afficherPlateau(plateau);
+    return 0;
 
 }
