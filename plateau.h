@@ -11,4 +11,15 @@ void afficherPlateau(Tuile plateau[12][26]);
 
 int coordonnes(Tuile plateau[12][26],Tuile test);
 
+#define LIGNE 12
+#define COLONNE 26
+
+
+
+
+
+
+
+
+
 #endif //PROJET_TAC_TAC_PLATEAU_H

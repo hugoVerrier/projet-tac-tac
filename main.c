@@ -8,6 +8,10 @@
 #include "menu.h"
 #include "tactac.h"
 #include "plateau.h"
+#include "tactac.h"
+#include "stdlib.h"
+#include "time.h"
+
 
 
 int main() {
