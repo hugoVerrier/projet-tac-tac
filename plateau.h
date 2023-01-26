@@ -5,7 +5,11 @@
 #ifndef PROJET_TAC_TAC_PLATEAU_H
 #define PROJET_TAC_TAC_PLATEAU_H
 
-void afficherPlateau();
+#include "tactac.h"
+void initialiserPlateau(Tuile plateau[12][26]);
+void afficherPlateau(Tuile plateau[12][26]);
+
+void aller(Tuile plateau[12][26]);
 
 #define LIGNE 12
 #define COLONNE 26
