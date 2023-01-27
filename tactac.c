@@ -44,8 +44,9 @@ void MelangeTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRAD
     }
 }
 
-void JeuProjet(Joueur TabJoueur[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile DeckD[DEGRADE],int choix){
-    int ModeDeJeu=0, nbcase,nbjoueur=3;
+void JeuProjet(Joueur TabJoueur[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile DeckD[DEGRADE],int choix,int nbJ){
+    int ModeDeJeu=0, nbcase,ordre=0;
+    ordre = ordre%4;
     int fin = FALSE;
     Tuile test={0};
     printf("Mode de Jeu ? (1 : degrade sinon normal)\n");
@@ -56,30 +57,32 @@ void JeuProjet(Joueur TabJoueur[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuil
         nbcase=108;
     }
     creationPioches(nbcase,Deck,ModeDeJeu,DeckD);
-    DistributionTuiles(TabJoueur,Deck,DeckD,nbjoueur,ModeDeJeu);
+    DistributionTuiles(TabJoueur,Deck,DeckD,nbJ,ModeDeJeu);
 //    afficheTab(nbcase,Deck,ModeDeJeu,DeckD);
-    afficherPlateau(plateau, TabJoueur, choix);
+    afficherPlateau(plateau, TabJoueur, choix,ordre,nbJ);
     while(!fin) {
-        choix = ChoixCase(TabJoueur[0], choix);
-        coordonnes(plateau, TabJoueur[0], choix);
+        choix = ChoixCase(TabJoueur[ordre], choix,ordre+1);
+        TabJoueur[ordre]=coordonnes(plateau, TabJoueur[ordre], choix);
 //        printf(" %d %d",(int)TabJoueur[0].pupitre[0].symbole,(int)TabJoueur[0].pupitre[0].couleur);
-        RendreCartes(TabJoueur, Deck, DeckD, choix);
-        afficherPlateau(plateau, TabJoueur, choix);
+        RendreCartes(TabJoueur[ordre], Deck, DeckD, choix);
+        afficherPlateau(plateau, TabJoueur, choix,ordre,nbJ);
         if((DeckD[0].symbole==0)&&(DeckD[0].couleur==0)){
             fin = TRUE;
         }
+        ordre++;
     }
 }
 
-void RendreCartes(Joueur tabJ[4],Tuile Deck[NORMAL], Tuile DeckD[DEGRADE], int j){
+Joueur RendreCartes(Joueur J,Tuile Deck[NORMAL], Tuile DeckD[DEGRADE], int j){
     int i=0;
     while(DeckD[i].symbole!=0) {
-        if(tabJ[j].pupitre->symbole==0){
-          tabJ[j].pupitre->symbole=DeckD[i].symbole;
-          tabJ[j].pupitre->couleur=DeckD[i].couleur;
+        if(J.pupitre->symbole==0){
+          J.pupitre->symbole=DeckD[i].symbole;
+          J.pupitre->couleur=DeckD[i].couleur;
         }
         i--;
     }
+    return J;
 }
 
 
@@ -104,8 +107,8 @@ void afficheTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRAD
     }
 }
 
-int ChoixCase(Joueur J, int choix){
-    printf(" quelle cartes voulez vous jouez (taper 1 numero de la tuile du J1)\n");
+int ChoixCase(Joueur J, int choix,int j){
+    printf(" quelle cartes voulez vous jouez (taper 1 numero de la tuile du J%d)\n",j);
     scanf(" %d", &choix);
     return choix;
 }
@@ -121,7 +124,7 @@ void DistributionTuiles(Joueur tab[4], Tuile Deck[108], Tuile DeckD[36],int nbjo
             if(nbjoueur>2){
                 tab[2].pupitre[i].symbole=DeckD[35-(i+12)].symbole;
                 tab[2].pupitre[i].couleur=DeckD[35-(i+12)].couleur;
-                if(nbjoueur>4){
+                if(nbjoueur<5){
                     tab[3].pupitre[i].symbole=DeckD[35-(i+18)].symbole;
                     tab[3].pupitre[i].couleur=DeckD[35-(i+18)].couleur;
                 }

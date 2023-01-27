@@ -27,7 +27,7 @@ void display_menu(Joueur Tabj[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile 
                 //affichage de l'état du plateau
                 Tuile plateau[12][26];
                 initialiserPlateau(plateau);
-                JeuProjet(Tabj,plateau,Deck,DeckD,choix);
+                JeuProjet(Tabj,plateau,Deck,DeckD,choix,nb_players);
                 break;
             case 2:
                 //sauvegarder_une_partie();

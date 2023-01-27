@@ -39,18 +39,19 @@ typedef struct{
 //fonction du plateau
 void jouerPion (int ligne, int colonne, char forme, char couleur);
 void initialiserPlateau(Tuile plateau[12][26]);
-void afficherPlateau(Tuile plateau[12][26],Joueur tabJ[4],int choix);
+void afficherPlateau(Tuile plateau[12][26],Joueur tabJ[4],int choix,int ordre, int nbJ);
 void Couleur(Joueur J, int i);
-int coordonnes(Tuile plateau[12][26], Joueur J,int i);
+void CouleurCase(Tuile plateau[12][26],int i,int j);
+Joueur coordonnes(Tuile plateau[12][26], Joueur J,int i);
 
 //fonction tactac
 void MelangeTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRADE]);
-void JeuProjet(Joueur TabJoueur[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile DeckD[DEGRADE],int choix);
+void JeuProjet(Joueur TabJoueur[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile DeckD[DEGRADE],int choix,int nbJ);
 void afficheTab(int nbcase, Tuile Deck[108],int ModeDeJeu, Tuile DeckD[36]);
 void creationPioches(int nbcase,Tuile Deck[108],int ModeDeJeu,Tuile DeckD[36]);
 void DistributionTuiles(Joueur tab[4], Tuile Deck[108], Tuile DeckD[36],int nbjoueur, int ModeDeJeu);
-int ChoixCase(Joueur J, int choix);
-void RendreCartes(Joueur tabJ[4],Tuile Deck[NORMAL], Tuile DeckD[DEGRADE], int j);
+int ChoixCase(Joueur J, int choix,int j);
+Joueur RendreCartes(Joueur J,Tuile Deck[NORMAL], Tuile DeckD[DEGRADE], int j);
 
 //fonction du menu
 void display_menu(Joueur Tabj[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile DeckD[DEGRADE],int choix);
