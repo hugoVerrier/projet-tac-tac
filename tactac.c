@@ -62,7 +62,7 @@ void JeuProjet(Joueur TabJoueur[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuil
     while(!fin) {
         choix = ChoixCase(TabJoueur[0], choix);
         coordonnes(plateau, TabJoueur[0], choix);
-        printf(" %d %d",(int)TabJoueur[0].pupitre[0].symbole,(int)TabJoueur[0].pupitre[0].couleur);
+//        printf(" %d %d",(int)TabJoueur[0].pupitre[0].symbole,(int)TabJoueur[0].pupitre[0].couleur);
         RendreCartes(TabJoueur, Deck, DeckD, choix);
         afficherPlateau(plateau, TabJoueur, choix);
         if((DeckD[0].symbole==0)&&(DeckD[0].couleur==0)){
@@ -105,7 +105,7 @@ void afficheTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRAD
 }
 
 int ChoixCase(Joueur J, int choix){
-    printf(" quelle cartes voulez vous jouez (taper 1 numero\n");
+    printf(" quelle cartes voulez vous jouez (taper 1 numero de la tuile du J1)\n");
     scanf(" %d", &choix);
     return choix;
 }

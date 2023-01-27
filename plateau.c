@@ -71,7 +71,7 @@ int coordonnes(Tuile plateau[12][26], Joueur J,int i) {
     Tuile test;
     test.symbole=0;
     test.couleur=0;
-    printf("rentrer la ligne : ");
+    printf("rentrer la ligne :");
     scanf("%d", &a);
     switch (a) {
         case 1:
@@ -1693,6 +1693,7 @@ int coordonnes(Tuile plateau[12][26], Joueur J,int i) {
             }
             break;
     }
+    printf("\n");
 }
 
 void Couleur(Joueur  J,int i){
