@@ -3,8 +3,8 @@
 //
 #include "commun.h"
 
-void display_menu(Joueur Tabj[4]) {
-    int choix;
+void display_menu(Joueur Tabj[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile DeckD[DEGRADE],int choix) {
+    int choix2;
     int partie_terminee = 0;
     int nb_players;
     do {
@@ -15,11 +15,11 @@ void display_menu(Joueur Tabj[4]) {
         printf("4. Tableau des scores\n");
         printf("5. Credits\n");
         printf("6. Quitter le jeu\n");
-        printf("Entrez votre choix : ");
-        scanf("%d", &choix);
-        switch (choix) {
+        printf("Entrez votre choix :\n");
+        scanf("%d", &choix2);
+        switch (choix2) {
             case 1:
-                printf("Entrer le nombre de joueurs dans la partie ( entre 2 et 4) : ");
+                printf("Entrer le nombre de joueurs dans la partie ( entre 2 et 4) :\n");
                 scanf("%d", &nb_players);
                 if (nb_players < 2 || nb_players > 4){
                     printf("Le nombre de joueurs doit etre compris entre 2 et 4\n");
@@ -27,7 +27,7 @@ void display_menu(Joueur Tabj[4]) {
                 //affichage de l'état du plateau
                 Tuile plateau[12][26];
                 initialiserPlateau(plateau);
-                afficherPlateau(plateau,Tabj,choix);
+                JeuProjet(Tabj,plateau,Deck,DeckD,choix);
                 break;
             case 2:
                 //sauvegarder_une_partie();
@@ -56,7 +56,7 @@ void display_menu(Joueur Tabj[4]) {
                 printf("Choix invalide. Veuillez réessayer.\n");
                 break;
         }
-    } while (choix != 6);
+    } while (choix2 != 6);
 }
 // lire le choix de l'utilisateur
 int get_menu_choice(void) {

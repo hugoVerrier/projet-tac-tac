@@ -10,7 +10,7 @@ int main() {
     Tuile DeckD[DEGRADE]={0};
     int choix=0;
     srand(time(NULL));
-//    display_menu();
+    display_menu(tableauJoueur,plateau,Deck,DeckD,choix);
 
 //    Tuile test;
 //    initialiserPlateau(plateau);
@@ -20,8 +20,8 @@ int main() {
 //    int forme = 155;
 //    printf(" %c",forme);
 //
-//    printf("%c",4);
-    JeuProjet(tableauJoueur,plateau,Deck,DeckD,choix);
+
+//    JeuProjet(tableauJoueur,plateau,Deck,DeckD,choix);
 
     return 0;
 

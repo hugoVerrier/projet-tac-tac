@@ -53,7 +53,7 @@ int ChoixCase(Joueur J, int choix);
 void RendreCartes(Joueur tabJ[4],Tuile Deck[NORMAL], Tuile DeckD[DEGRADE], int j);
 
 //fonction du menu
-void display_menu(Joueur Tabj[4]);
+void display_menu(Joueur Tabj[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile DeckD[DEGRADE],int choix);
 int get_menu_choice();
 void debuter_une_nouvelle_partie(void);
 void sauvegarder_une_partie(void);
