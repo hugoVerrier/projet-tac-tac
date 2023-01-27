@@ -44,8 +44,9 @@ void MelangeTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRAD
     }
 }
 
-void JeuProjet(Joueur TAbJoueur[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile DeckD[DEGRADE]){
+void JeuProjet(Joueur TabJoueur[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile DeckD[DEGRADE],int choix){
     int ModeDeJeu=0, nbcase,nbjoueur=3;
+    int fin = FALSE;
     Tuile test={0};
     printf("Mode de Jeu ? (1 : degrade sinon normal)\n");
     scanf(" %d",&ModeDeJeu);
@@ -55,10 +56,33 @@ void JeuProjet(Joueur TAbJoueur[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuil
         nbcase=108;
     }
     creationPioches(nbcase,Deck,ModeDeJeu,DeckD);
-    DistributionTuiles(TAbJoueur,Deck,DeckD,nbjoueur,ModeDeJeu);
-    coordonnes(plateau,test);
-    afficherPlateau(plateau);
+    DistributionTuiles(TabJoueur,Deck,DeckD,nbjoueur,ModeDeJeu);
+//    afficheTab(nbcase,Deck,ModeDeJeu,DeckD);
+    afficherPlateau(plateau, TabJoueur, choix);
+    while(!fin) {
+        choix = ChoixCase(TabJoueur[0], choix);
+        coordonnes(plateau, TabJoueur[0], choix);
+        printf(" %d %d",(int)TabJoueur[0].pupitre[0].symbole,(int)TabJoueur[0].pupitre[0].couleur);
+        RendreCartes(TabJoueur, Deck, DeckD, choix);
+        afficherPlateau(plateau, TabJoueur, choix);
+        if((DeckD[0].symbole==0)&&(DeckD[0].couleur==0)){
+            fin = TRUE;
+        }
+    }
 }
+
+void RendreCartes(Joueur tabJ[4],Tuile Deck[NORMAL], Tuile DeckD[DEGRADE], int j){
+    int i=0;
+    while(DeckD[i].symbole!=0) {
+        if(tabJ[j].pupitre->symbole==0){
+          tabJ[j].pupitre->symbole=DeckD[i].symbole;
+          tabJ[j].pupitre->couleur=DeckD[i].couleur;
+        }
+        i--;
+    }
+}
+
+
 
 void afficheTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRADE]) {
     if (ModeDeJeu == 1) {
@@ -67,7 +91,7 @@ void afficheTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRAD
             if ((i % 6 == 0) && (i != 0)) {
                 printf("\n");
             }
-            printf(" %d", DeckD[i].symbole);
+            printf(" %d", DeckD[i].couleur);
         }
     }
     else {
@@ -75,10 +99,17 @@ void afficheTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRAD
             if ((i % 18 == 0) && (i != 0)) {
                 printf("\n");
             }
-            printf(" %d", Deck[i].symbole);
+            printf(" %d", Deck[i].couleur);
         }
     }
 }
+
+int ChoixCase(Joueur J, int choix){
+    printf(" quelle cartes voulez vous jouez (taper 1 numero\n");
+    scanf(" %d", &choix);
+    return choix;
+}
+
 
 void DistributionTuiles(Joueur tab[4], Tuile Deck[108], Tuile DeckD[36],int nbjoueur, int ModeDeJeu){
     if(ModeDeJeu==1){
@@ -116,11 +147,29 @@ void DistributionTuiles(Joueur tab[4], Tuile Deck[108], Tuile DeckD[36],int nbjo
 }
 
 
-//void verif(int x,int y, Tuile plateau[26][12],Tuile test){
+//int verif(int x,int y, Tuile plateau[26][12],Tuile test){
 //    if(plateau[x][y].symbole==0){
-//        if( (plateau[x-1][y.symbole]==0) && (plateau[x+1][y].symbole==0) && plateau[x][y+1].symbole==0) && (plateau[x][y-1]==0)){
+//        if( (plateau[x-1][y].symbole==0) && (plateau[x+1][y].symbole==0) && (plateau[x][y+1].symbole==0) && (plateau[x][y-1].symbole==0)){
 //        plateau[x][y]=test;
-//        }else if()
+//        }else if((plateau[x-1][y].symbole!=0)){
+////            if((e)&&(plateau[x-1][y].couleur!=test.couleur)){
+////                if((plateau[x-2][y].symbole==test.symbole)&&(plateau[x-2][y].couleur!=test.couleur)&&(plateau[x-2][y].symbole==plateau[x-1][y].symbole)){
+////                    if((plateau[x-3][y].symbole==test.symbole)&&(plateau[x-3][y].couleur!=test.couleur)&&(plateau[x-2][y].symbole==plateau[x-1][y].symbole)&&(plateau[x-3][y].symbole==plateau[x-2][y].symbole)){
+////                        if((plateau[x-4][y].symbole==test.symbole)&&(plateau[x-4][y].couleur!=test.couleur)&&(plateau[x-2][y].symbole==plateau[x-1][y].symbole))){
+//                            for (int i = 0; i < 5; ++i) {
+//                                for (int j = 0; j < 5; ++j) {
+//                                    if(plateau[x-i][y].couleur==plateau[j][y].couleur){
+//                                        if(plateau[x-i][y].symbole!=plateau[j][y].symbole){
+//                                            return 1;
+//                                        }
+//                                    }
+////                                }
+////                            }
+////                        }
+////                    }
+//                }
+//            }
+//        }
 //    }
 //}
 

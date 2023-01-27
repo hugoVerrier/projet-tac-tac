@@ -3,7 +3,7 @@
 //
 #include "commun.h"
 
-void display_menu() {
+void display_menu(Joueur Tabj[4]) {
     int choix;
     int partie_terminee = 0;
     int nb_players;
@@ -27,7 +27,7 @@ void display_menu() {
                 //affichage de l'état du plateau
                 Tuile plateau[12][26];
                 initialiserPlateau(plateau);
-                afficherPlateau(plateau);
+                afficherPlateau(plateau,Tabj,choix);
                 break;
             case 2:
                 //sauvegarder_une_partie();

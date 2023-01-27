@@ -37,24 +37,23 @@ typedef struct{
 }Joueur;
 
 //fonction du plateau
-void afficherPlateau2();
 void jouerPion (int ligne, int colonne, char forme, char couleur);
 void initialiserPlateau(Tuile plateau[12][26]);
-void afficherPlateau(Tuile plateau[12][26]);
-void Couleur(Tuile test);
-int coordonnes(Tuile plateau[12][26],Tuile test);
-
+void afficherPlateau(Tuile plateau[12][26],Joueur tabJ[4],int choix);
+void Couleur(Joueur J, int i);
+int coordonnes(Tuile plateau[12][26], Joueur J,int i);
 
 //fonction tactac
 void MelangeTab(int nbcase, Tuile Deck[NORMAL],int ModeDeJeu, Tuile DeckD[DEGRADE]);
-void JeuProjet(tableauJoueur,plateau,Deck,DeckD);
+void JeuProjet(Joueur TabJoueur[4],Tuile plateau[12][26],Tuile Deck[NORMAL],Tuile DeckD[DEGRADE],int choix);
 void afficheTab(int nbcase, Tuile Deck[108],int ModeDeJeu, Tuile DeckD[36]);
 void creationPioches(int nbcase,Tuile Deck[108],int ModeDeJeu,Tuile DeckD[36]);
 void DistributionTuiles(Joueur tab[4], Tuile Deck[108], Tuile DeckD[36],int nbjoueur, int ModeDeJeu);
-
+int ChoixCase(Joueur J, int choix);
+void RendreCartes(Joueur tabJ[4],Tuile Deck[NORMAL], Tuile DeckD[DEGRADE], int j);
 
 //fonction du menu
-void display_menu(void);
+void display_menu(Joueur Tabj[4]);
 int get_menu_choice();
 void debuter_une_nouvelle_partie(void);
 void sauvegarder_une_partie(void);
